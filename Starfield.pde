@@ -1,15 +1,17 @@
 //your code here
-NormalParticle [] space;
+Particle [] space;
 void setup()
 {
 	size(500,500);
-	space = new NormalParticle[20];
+	space = new Particle[100];
 	for(int i=0; i<space.length; i++)
 	{
 		space[i] = new NormalParticle();
 	}
-	//your code here
+	space[0] = new OddballParticle();
+	space[1] = new JumboParticle();
 }
+
 void draw()
 {
 	background(1);
@@ -18,28 +20,31 @@ void draw()
 	 space[i].show();
 	 space[i].move();
 	 }
-	//your code here
 }
+
 class NormalParticle implements Particle
 {
 	double dTheta, dSpeed, myX, myY; 
 	int myColor;
-	NormalParticle(){
-		myColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+	NormalParticle()
+	{
+		myColor = color(255, 255, 255);
 		myX = 250;
 		myY = 250;
 		dSpeed = Math.random()*5;
 		dTheta = Math.random()*9* Math.PI;
 	}
 
-	public void move(){
+	public void move()
+	{
 		myX = myX + Math.cos(dTheta)*dSpeed;
 		myY = myY + Math.sin(dTheta)*dSpeed;
 	}
 
-	public void show(){
+	public void show()
+	{
 		fill(myColor);
-		ellipse((float)myX, (float)myY, 10, 10);
+		ellipse((float)myX, (float)myY, 2, 2);
 	}
 	//your code here
 }
@@ -50,15 +55,39 @@ interface Particle
 	public void show();
 }
 
-class OddballParticle //uses an interface
+class OddballParticle implements Particle //moves slower + differnt shape
 {
-	//your code here
+	double dTheta, dSpeed, myX, myY; 
+	int myColor;
+	OddballParticle(){
+		myColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+		myX = 250;
+		myY = 250;
+		dSpeed = Math.random()*3;
+		dTheta = Math.random()*5* Math.PI;
+	}
 
+	public void move(){
+		myX = myX + Math.cos(dTheta)*dSpeed;
+		myY = myY + Math.sin(dTheta)*dSpeed;
+	}
+
+	public void show(){
+		fill(myColor);
+		rect((float)myX, (float)myY, 10, 10);
+	}
 }
 
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle//uses inheritance
 {
-	//your code here
-
+	int mySize;
+	JumboParticle()
+	{
+		mySize = (int)(Math.random()*10)+10;
+	}
+	void show()
+	{
+		ellipse((float)myX, (float)myY, mySize, mySize);
+	}
 }
 
