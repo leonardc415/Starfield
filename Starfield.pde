@@ -83,7 +83,7 @@ class JumboParticle extends NormalParticle//uses inheritance
 	int mySize;
 	JumboParticle()
 	{
-		mySize = (int)(Math.random()*10)+10;
+		mySize = (int)(Math.random()*20)+10;
 	}
 	void show()
 	{
