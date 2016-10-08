@@ -29,8 +29,8 @@ class NormalParticle implements Particle
 	NormalParticle()
 	{
 		myColor = color(255, 255, 255);
-		myX = 250;
-		myY = 250;
+		myX = 400;
+		myY = 400;
 		dSpeed = Math.random()*5;
 		dTheta = Math.random()*9* Math.PI;
 	}
